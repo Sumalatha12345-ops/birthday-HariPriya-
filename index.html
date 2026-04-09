@@ -1,78 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Happy Birthday 🎂</title>
-    <style>
-        body {
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
-            font-family: Arial, sans-serif;
-            text-align: center;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<title>Happy Birthday Haripriya 🎂</title>
 
-        .container {
-            margin-top: 100px;
-        }
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        text-align: center;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(to top, #ff9a9e, #fad0c4);
+    }
 
-        h1 {
-            font-size: 50px;
-            color: #ff4081;
-        }
+    h1 {
+        font-size: 50px;
+        color: white;
+        margin-top: 60px;
+    }
 
-        h2 {
-            font-size: 30px;
-        }
+    /* ✨ Glowing name */
+    .name {
+        font-size: 40px;
+        color: #fff;
+        text-shadow: 0 0 10px #ff4da6,
+                     0 0 20px #ff4da6,
+                     0 0 30px #ff4da6;
+        animation: glow 1.5s infinite alternate;
+    }
 
-        p {
-            font-size: 20px;
-        }
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #ff4da6; }
+        to { text-shadow: 0 0 30px #ff99cc, 0 0 50px #ff66b2; }
+    }
 
-        .cake {
-            font-size: 80px;
-            animation: bounce 1s infinite;
-        }
+    p {
+        font-size: 20px;
+        color: white;
+    }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
+    button {
+        padding: 12px 25px;
+        font-size: 18px;
+        background: #ff4da6;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
 
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #ff4081;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
+    /* 🎈 Balloons */
+    .balloon {
+        position: absolute;
+        bottom: -150px;
+        width: 60px;
+        height: 80px;
+        background: red;
+        border-radius: 50%;
+        animation: float 6s infinite;
+    }
 
-        button:hover {
-            background-color: #e73370;
-        }
-    </style>
+    .balloon::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 40px;
+        background: white;
+        top: 80px;
+        left: 30px;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-120vh); }
+    }
+
+</style>
 </head>
+
 <body>
 
-<div class="container">
-    <div class="cake">🎂</div>
-    <h1>Happy Birthday!</h1>
-    <h2>Dear Anna 🎉</h2>
-    <p>Wishing you lots of happiness, success, and love today and always 💖</p>
+<h1>🎂 Happy Birthday 🎉</h1>
+<h2 class="name">Haripriya 💖</h2>
+<p>May your life be filled with happiness and success ✨</p>
 
-    <button onclick="showMessage()">Click for Surprise 🎁</button>
+<button onclick="showWish()">Click for Surprise 🎁</button>
+<p id="msg"></p>
 
-    <p id="msg"></p>
-</div>
+<!-- Balloons -->
+<div class="balloon" style="left:10%; background:#ff4d4d; animation-duration:5s;"></div>
+<div class="balloon" style="left:30%; background:#4dd2ff; animation-duration:6s;"></div>
+<div class="balloon" style="left:50%; background:#ffff66; animation-duration:7s;"></div>
+<div class="balloon" style="left:70%; background:#66ff66; animation-duration:5.5s;"></div>
+<div class="balloon" style="left:90%; background:#ff66cc; animation-duration:6.5s;"></div>
 
 <script>
-    function showMessage() {
-        document.getElementById("msg").innerHTML = 
-        "You are the best brother ever! 💙 Have an amazing year ahead!";
-    }
+function showWish() {
+    document.getElementById("msg").innerHTML =
+    "You are an amazing sister 💕 Happy Birthday Haripriya 🎂✨";
+}
 </script>
 
 </body>
