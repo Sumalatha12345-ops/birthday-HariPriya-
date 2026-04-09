@@ -15,16 +15,35 @@ body {
     align-items: center;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, #060112, #110101);
+
+    /* 🎂 REAL BIRTHDAY BACKGROUND IMAGE */
+    background: url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d') no-repeat center center/cover;
+
     overflow: hidden;
 }
 
-.container { position: relative; z-index: 2; }
+/* Dark overlay for readability */
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+}
 
 h1 {
     font-family: 'Sacramento', cursive;
     font-size: 70px;
     color: white;
+    text-shadow: 0 0 20px #fff;
 }
 
 .name {
@@ -34,13 +53,13 @@ h1 {
 
 p {
     font-size: 18px;
-    color: #f1f3f5;
+    color: #ffffff;
 }
 
 button {
     padding: 12px 25px;
     margin-top: 20px;
-    background: linear-gradient(45deg,#00c6ff,#0072ff);
+    background: linear-gradient(45deg,#ff2e63,#ff6a88);
     color: white;
     border: none;
     border-radius: 25px;
@@ -55,7 +74,8 @@ button {
     height: 80px;
     border-radius: 50% 50% 45% 45%;
     animation: float linear infinite;
-    box-shadow: inset -5px -10px 15px rgba(0,0,0,0.2), inset 5px 5px 15px rgba(255,255,255,0.3);
+    box-shadow: inset -5px -10px 15px rgba(0,0,0,0.2),
+                inset 5px 5px 15px rgba(255,255,255,0.3);
 }
 
 .balloon::after {
@@ -77,7 +97,6 @@ button {
     background: currentColor;
     bottom: -55px;
     left: 29px;
-    border-radius: 50%;
     animation: ribbonWave 2s infinite alternate;
 }
 
@@ -127,11 +146,6 @@ button {
     transform: rotate(-120deg);
 }
 
-@keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-
 /* Hearts */
 .heart {
     position: fixed;
@@ -144,22 +158,6 @@ button {
         transform: translateY(-200px);
         opacity: 0;
     }
-}
-
-/* Stars */
-.star-glow {
-    position: fixed;
-    width: 5px;
-    height: 5px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #fff, 0 0 20px #00eaff;
-    animation: twinkle 2s infinite alternate;
-}
-
-@keyframes twinkle {
-    from { opacity: 0.3; }
-    to { opacity: 1; }
 }
 </style>
 </head>
@@ -174,11 +172,11 @@ button {
     <p id="msg"></p>
 </div>
 
-<!-- 🎈 MORE BALLOONS -->
+<!-- 🎈 Balloons -->
 <script>
 const colors = ["#ffd6e0","#caffbf","#a0c4ff","#ffc6ff","#fdffb6","#ffadad","#cdb4db","#bde0fe"];
 
-for(let i=0;i<25;i++){
+for(let i=0;i<30;i++){
     let b = document.createElement("div");
     b.className="balloon";
     b.style.left = Math.random()*100 + "%";
@@ -198,11 +196,6 @@ for(let i=0;i<25;i++){
 <div class="gift gift2" onclick="openGiftBox(this)">
     <div class="box"><div class="lid"></div><div class="base"></div></div>
 </div>
-
-<!-- Stars -->
-<div class="star-glow" style="top:10%; left:20%;"></div>
-<div class="star-glow" style="top:40%; left:70%;"></div>
-<div class="star-glow" style="top:70%; left:40%;"></div>
 
 <script>
 function showWish() {
