@@ -15,7 +15,7 @@ body {
     align-items: center;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    background: #000000;
+    background: linear-gradient(135deg, #060112, #110101);
     overflow: hidden;
 }
 
@@ -24,7 +24,7 @@ body {
 h1 {
     font-family: 'Sacramento', cursive;
     font-size: 70px;
-    color: #ffffff;
+    color: white;
 }
 
 .name {
@@ -39,7 +39,8 @@ p {
 
 button {
     padding: 12px 25px;
-    background: linear-gradient(45deg, #ff2e63, #ff6a88);
+    margin-top: 20px;
+    background: linear-gradient(45deg,#00c6ff,#0072ff);
     color: white;
     border: none;
     border-radius: 25px;
@@ -53,18 +54,19 @@ button {
     width: 60px;
     height: 80px;
     border-radius: 50% 50% 45% 45%;
-    animation: float 8s linear infinite;
+    animation: float linear infinite;
+    box-shadow: inset -5px -10px 15px rgba(0,0,0,0.2), inset 5px 5px 15px rgba(255,255,255,0.3);
 }
 
 .balloon::after {
     content: "";
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background: inherit;
-    bottom: -5px;
-    left: 25px;
-    transform: rotate(45deg);
+    top: 10px;
+    left: 15px;
+    width: 20px;
+    height: 30px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50%;
 }
 
 .balloon::before {
@@ -72,39 +74,58 @@ button {
     position: absolute;
     width: 2px;
     height: 50px;
-    background: #ccc;
+    background: currentColor;
     bottom: -55px;
     left: 29px;
     border-radius: 50%;
-    transform: rotate(10deg);
+    animation: ribbonWave 2s infinite alternate;
 }
 
-.balloon::after {
-    content: "";
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: inherit;
-    bottom: -6px;
-    left: 26px;
-    transform: rotate(45deg);
+@keyframes ribbonWave {
+    from { transform: rotate(5deg); }
+    to { transform: rotate(15deg); }
 }
 
 @keyframes float {
     100% { transform: translateY(-120vh); }
 }
 
-/* Gifts */
+/* Gift */
 .gift {
     position: fixed;
     bottom: 120px;
-    font-size: 40px;
     cursor: pointer;
     animation: bounce 2s infinite;
 }
 
 .gift1 { left: 20px; }
 .gift2 { right: 20px; }
+
+.box { width: 60px; height: 60px; position: relative; }
+
+.base {
+    width: 60px;
+    height: 40px;
+    background: #ff6a88;
+    position: absolute;
+    bottom: 0;
+    border-radius: 5px;
+}
+
+.lid {
+    width: 60px;
+    height: 20px;
+    background: #ff2e63;
+    position: absolute;
+    top: 0;
+    border-radius: 5px;
+    transform-origin: left bottom;
+    transition: transform 0.5s ease;
+}
+
+.gift.open .lid {
+    transform: rotate(-120deg);
+}
 
 @keyframes bounce {
     0%,100% { transform: translateY(0); }
@@ -114,12 +135,15 @@ button {
 /* Hearts */
 .heart {
     position: fixed;
-    color: red; /* red hearts */
+    color: red;
     animation: rise 3s linear forwards;
 }
 
 @keyframes rise {
-    100% { transform: translateY(-200px); opacity: 0; }
+    100% {
+        transform: translateY(-200px);
+        opacity: 0;
+    }
 }
 
 /* Stars */
@@ -137,21 +161,6 @@ button {
     from { opacity: 0.3; }
     to { opacity: 1; }
 }
-
-/* Shooting Stars */
-.shooting-star {
-    position: fixed;
-    width: 2px;
-    height: 80px;
-    background: linear-gradient(-45deg, white, transparent);
-    transform: rotate(45deg);
-    animation: shoot 3s linear infinite;
-}
-
-@keyframes shoot {
-    0% { transform: translate(0,0) rotate(45deg); opacity: 1; }
-    100% { transform: translate(-600px,600px) rotate(45deg); opacity: 0; }
-}
 </style>
 </head>
 
@@ -161,45 +170,39 @@ button {
     <h1>Happy Birthday</h1>
     <div class="name">Dear HariPriya <br> Wish You a Very Happiest Birthday Hari</div>
 
-    <button onclick="showWish()">Click for Surprise ❤</button>
+    <button onclick="showWish()">Click Surprise for You ❤</button>
     <p id="msg"></p>
 </div>
 
-<!-- Balloons -->
-<div class="balloon" style="left:5%; background:#ff4d6d; animation-duration:6s;"></div>
-<div class="balloon" style="left:10%; background:#ff6b6b; animation-duration:7s;"></div>
-<div class="balloon" style="left:15%; background:#f06595; animation-duration:5.5s;"></div>
-<div class="balloon" style="left:20%; background:#cc5de8; animation-duration:8s;"></div>
-<div class="balloon" style="left:25%; background:#845ef7; animation-duration:6.5s;"></div>
-<div class="balloon" style="left:30%; background:#5c7cfa; animation-duration:7.5s;"></div>
-<div class="balloon" style="left:35%; background:#4dabf7; animation-duration:5s;"></div>
-<div class="balloon" style="left:40%; background:#22b8cf; animation-duration:6s;"></div>
-<div class="balloon" style="left:45%; background:#20c997; animation-duration:7s;"></div>
-<div class="balloon" style="left:50%; background:#51cf66; animation-duration:6.5s;"></div>
-<div class="balloon" style="left:55%; background:#94d82d; animation-duration:7.2s;"></div>
-<div class="balloon" style="left:60%; background:#fcc419; animation-duration:6s;"></div>
-<div class="balloon" style="left:65%; background:#ff922b; animation-duration:8s;"></div>
-<div class="balloon" style="left:70%; background:#ff6b6b; animation-duration:5.8s;"></div>
-<div class="balloon" style="left:75%; background:#ff8787; animation-duration:7.8s;"></div>
-<div class="balloon" style="left:80%; background:#e64980; animation-duration:6.3s;"></div>
-<div class="balloon" style="left:85%; background:#be4bdb; animation-duration:7.1s;"></div>
-<div class="balloon" style="left:90%; background:#7950f2; animation-duration:6.7s;"></div>
-<div class="balloon" style="left:95%; background:#4dabf7; animation-duration:8.2s;"></div>
+<!-- 🎈 MORE BALLOONS -->
+<script>
+const colors = ["#ffd6e0","#caffbf","#a0c4ff","#ffc6ff","#fdffb6","#ffadad","#cdb4db","#bde0fe"];
+
+for(let i=0;i<25;i++){
+    let b = document.createElement("div");
+    b.className="balloon";
+    b.style.left = Math.random()*100 + "%";
+    let c = colors[Math.floor(Math.random()*colors.length)];
+    b.style.background = c;
+    b.style.color = c;
+    b.style.animationDuration = (5+Math.random()*5)+"s";
+    document.body.appendChild(b);
+}
+</script>
 
 <!-- Gifts -->
-<div style="position:fixed; bottom:180px; left:20px; color:white; font-size:16px;">Click Gift</div>
-<div style="position:fixed; bottom:180px; right:20px; color:white; font-size:16px;">Click Gift</div>
-<div class="gift gift1" onclick="openGift(50)">🎁</div>
-<div class="gift gift2" onclick="openGift(window.innerWidth-100)">🎁</div>
+<div class="gift gift1" onclick="openGiftBox(this)">
+    <div class="box"><div class="lid"></div><div class="base"></div></div>
+</div>
+
+<div class="gift gift2" onclick="openGiftBox(this)">
+    <div class="box"><div class="lid"></div><div class="base"></div></div>
+</div>
 
 <!-- Stars -->
 <div class="star-glow" style="top:10%; left:20%;"></div>
-<div class="star-glow" style="top:30%; left:70%;"></div>
-<div class="star-glow" style="top:60%; left:40%;"></div>
-
-<!-- Shooting Stars -->
-<div class="shooting-star" style="top:10%; left:80%;"></div>
-<div class="shooting-star" style="top:40%; left:90%;"></div>
+<div class="star-glow" style="top:40%; left:70%;"></div>
+<div class="star-glow" style="top:70%; left:40%;"></div>
 
 <script>
 function showWish() {
@@ -209,17 +212,31 @@ function showWish() {
     No matter where life takes us, you will always be close to my heart.`;
 }
 
-function openGift(positionX) {
+function openGiftBox(el) {
+    el.classList.add("open");
+
+    const rect = el.getBoundingClientRect();
+
     for (let i = 0; i < 20; i++) {
-        let heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤";
-        heart.style.left = (positionX + Math.random()*50) + "px";
-        heart.style.bottom = "60px";
-        heart.style.fontSize = (20 + Math.random()*20) + "px";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 3000);
+        setTimeout(() => {
+            let heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "❤";
+
+            heart.style.left = (rect.left + rect.width/2) + "px";
+            heart.style.top = (rect.top + 20) + "px";
+
+            let x = Math.random()*100 - 50;
+            heart.style.transform = `translateX(${x}px)`;
+            heart.style.fontSize = (18 + Math.random()*20) + "px";
+
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+
+        }, i * 80);
     }
+
+    setTimeout(() => el.classList.remove("open"), 800);
 }
 </script>
 
