@@ -2,83 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Happy Birthday Haripriya 🎂</title>
+    <title>Happy Birthday 🎂</title>
     <style>
         body {
-            background: linear-gradient(to right, #ffdde1, #ee9ca7);
-            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            font-family: Arial, sans-serif;
             text-align: center;
+            color: #333;
             margin: 0;
             padding: 0;
-            color: #444;
         }
 
         .container {
-            margin-top: 80px;
+            margin-top: 100px;
         }
 
         h1 {
-            font-size: 55px;
-            color: #d63384;
+            font-size: 50px;
+            color: #ff4081;
         }
 
         h2 {
-            font-size: 35px;
+            font-size: 30px;
         }
 
         p {
             font-size: 20px;
         }
 
-        .emoji {
-            font-size: 70px;
-            animation: float 2s infinite;
+        .cake {
+            font-size: 80px;
+            animation: bounce 1s infinite;
         }
 
-        @keyframes float {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         button {
-            padding: 12px 25px;
+            padding: 10px 20px;
             font-size: 18px;
-            background-color: #d63384;
+            background-color: #ff4081;
             color: white;
             border: none;
-            border-radius: 25px;
+            border-radius: 10px;
             cursor: pointer;
-            margin-top: 20px;
         }
 
         button:hover {
-            background-color: #b0256a;
-        }
-
-        #msg {
-            margin-top: 20px;
-            font-size: 22px;
-            color: #222;
+            background-color: #e73370;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="emoji">🎂🎉💖</div>
-    <h1>Happy Birthday</h1>
-    <h2>Dear Haripriya 💕</h2>
-    <p>May your day be filled with love, laughter, and endless happiness ✨</p>
+    <div class="cake">🎂</div>
+    <h1>Happy Birthday!</h1>
+    <h2>Dear Anna 🎉</h2>
+    <p>Wishing you lots of happiness, success, and love today and always 💖</p>
 
-    <button onclick="showWish()">Click for Special Wish 🎁</button>
+    <button onclick="showMessage()">Click for Surprise 🎁</button>
 
     <p id="msg"></p>
 </div>
 
 <script>
-    function showWish() {
+    function showMessage() {
         document.getElementById("msg").innerHTML = 
-        "You are an amazing sister 💖 May all your dreams come true Haripriya! 🌸🎂";
+        "You are the best brother ever! 💙 Have an amazing year ahead!";
     }
 </script>
 
