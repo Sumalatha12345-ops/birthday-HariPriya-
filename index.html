@@ -18,6 +18,7 @@ background:url('https://images.unsplash.com/photo-1603532648955-039310d9ed75?aut
 overflow:hidden;
 }
 
+/* layout */
 .container{
 display:flex;
 align-items:center;
@@ -25,23 +26,26 @@ gap:40px;
 z-index:2;
 }
 
+/* image */
 .photo{
-width:180px;
-height:300px;
+width:200px;
+height:320px;
 border:5px solid white;
-border-radius:10px;
+border-radius:12px;
 object-fit:cover;
+box-shadow:0 0 15px white;
 }
 
+/* text */
 h1{
 font-family:'Sacramento',cursive;
-font-size:50px;
+font-size:55px;
 color:white;
 }
 
 .name{
 color:#ffe066;
-font-size:25px;
+font-size:26px;
 }
 
 #msg{
@@ -50,6 +54,7 @@ margin-top:10px;
 min-height:80px;
 }
 
+/* button */
 button{
 padding:10px 20px;
 margin-top:10px;
@@ -64,8 +69,8 @@ cursor:pointer;
 .balloon{
 position:absolute;
 bottom:-120px;
-width:40px;
-height:60px;
+width:50px;
+height:70px;
 border-radius:50%;
 animation:float 6s linear infinite;
 }
@@ -73,9 +78,9 @@ animation:float 6s linear infinite;
 content:"";
 position:absolute;
 width:2px;
-height:40px;
+height:50px;
 background:currentColor;
-bottom:-40px;
+bottom:-50px;
 left:50%;
 animation:wave 1.5s infinite alternate;
 }
@@ -98,7 +103,7 @@ cursor:pointer;
 
 .box{width:60px;height:60px;position:relative;}
 .base{width:60px;height:40px;background:#7b6aff;position:absolute;bottom:0;}
-.lid{width:60px;height:20px;background:#4d2eff;position:absolute;top:0;transition:.5s;transform-origin:left bottom;}
+.lid{width:60px;height:20px;background:#4d2eff;position:absolute;top:0;transform-origin:left bottom;transition:.5s;}
 .gift.open .lid{transform:rotate(-120deg);}
 
 /* hearts */
@@ -115,9 +120,9 @@ animation:rise 3s linear forwards;
 
 <body>
 
-<!-- 🎵 Birthday Song -->
+<!-- 🎵 MUSIC -->
 <audio id="bgMusic" loop>
-<source src="https://cdn.pixabay.com/audio/2023/03/27/audio_5d5b4e6f0f.mp3" type="audio/mpeg">
+<source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946b6f3e6e.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
@@ -144,13 +149,21 @@ animation:rise 3s linear forwards;
 </div>
 
 <script>
-// start
+// 🎵 START (FIXED)
 function startExperience(){
-document.getElementById("bgMusic").play();
+let music=document.getElementById("bgMusic");
+
+music.muted=false;
+music.volume=1;
+
+music.play().catch(()=>{
+alert("Tap again to play music 🎵");
+});
+
 typeWish();
 }
 
-// typing
+// ✨ typing
 let t;
 function typeWish(){
 let text=`Happy Birthday to my lovely sister 💕  
@@ -171,22 +184,29 @@ if(i>=text.length)clearInterval(t);
 },40);
 }
 
-// balloons
-let colors=["#ff4d6d","#a0c4ff","#caffbf","#ffc6ff"];
-for(let i=0;i<15;i++){
+// 🎈 MORE BALLOONS
+let colors=["#ff4d6d","#ffafcc","#cdb4db","#a0c4ff","#caffbf","#ffd6a5","#bde0fe"];
+
+for(let i=0;i<35;i++){
 let b=document.createElement("div");
 b.className="balloon";
 b.style.left=Math.random()*100+"%";
-b.style.background=colors[Math.floor(Math.random()*colors.length)];
+
+let c=colors[Math.floor(Math.random()*colors.length)];
+b.style.background=c;
+b.style.color=c;
+
+b.style.animationDuration=(4+Math.random()*4)+"s";
+
 document.body.appendChild(b);
 }
 
-// gift
+// 🎁 gift animation
 function openGift(el){
 el.classList.add("open");
 let r=el.getBoundingClientRect();
 
-for(let i=0;i<15;i++){
+for(let i=0;i<20;i++){
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="❤";
