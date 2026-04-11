@@ -2,91 +2,54 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Hari</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+<title>Birthday Wishes</title>
 
 <style>
-body{
-margin:0;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-font-family:'Montserrat',sans-serif;
-background:#111;
-color:white;
-overflow:hidden;
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #ffdde1, #ee9ca7);
+    font-family: Arial;
+    flex-direction: column;
 }
 
-.container{
-text-align:center;
+h1 {
+    color: white;
+    font-size: 40px;
 }
 
-h1{
-font-family:'Sacramento',cursive;
-font-size:50px;
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #ff4d6d;
+    color: white;
 }
-
-button{
-padding:10px 20px;
-margin-top:15px;
-background:#ff4d6d;
-color:white;
-border:none;
-border-radius:20px;
-cursor:pointer;
-}
-
-/* balloons */
-.balloon{
-position:absolute;
-bottom:-120px;
-width:40px;
-height:60px;
-border-radius:50%;
-animation:float 6s linear infinite;
-}
-@keyframes float{
-100%{transform:translateY(-120vh);}
+button:hover {
+    background: #ff1e4d;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<h1>🎉 Happy Birthday 🎉</h1>
 
-<h1>Happy Birthday 🎂</h1>
-<p>Dear HariPriya 💖</p>
+<button onclick="playMusic()">▶ Play Birthday Song</button>
 
-<!-- ✅ AUDIO (WORKING) -->
-<audio id="bgMusic" controls>
-<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b5c0c.mp3" type="audio/mpeg">
+<audio id="song">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
 </audio>
 
-<br>
-
-<button onclick="showWish()">Click Surprise 🎁</button>
-<p id="msg"></p>
-
-</div>
-
 <script>
-// show wish
-function showWish(){
-document.getElementById("msg").innerHTML =
-"Happy Birthday 💖 Stay happy always 🎉";
-}
-
-// balloons
-let colors=["#ff4d6d","#a0c4ff","#caffbf"];
-for(let i=0;i<25;i++){
-let b=document.createElement("div");
-b.className="balloon";
-b.style.left=Math.random()*100+"%";
-b.style.background=colors[Math.floor(Math.random()*colors.length)];
-document.body.appendChild(b);
+function playMusic() {
+    let audio = document.getElementById("song");
+    audio.play();
 }
 </script>
 
