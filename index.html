@@ -7,257 +7,195 @@
 <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Montserrat', sans-serif;
-
-    background: url('https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
-    overflow: hidden;
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Montserrat',sans-serif;
+background:url('https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&w=1600&q=80') no-repeat center/cover;
+overflow:hidden;
 }
 
-/* Light overlay */
-body::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.2);
+.container{
+display:flex;
+align-items:center;
+gap:40px;
+z-index:2;
 }
 
-/* Layout */
-.container {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 60px;
+.photo{
+width:180px;
+height:300px;
+border:5px solid white;
+border-radius:10px;
+object-fit:cover;
 }
 
-/* IMAGE */
-.photo {
-    width: 200px;
-    height: 360px;
-    border-radius: 14px;
-    border: 5px solid white;
-    object-fit: cover;
-    box-shadow: 0 0 15px rgba(255,255,255,0.6);
+h1{
+font-family:'Sacramento',cursive;
+font-size:50px;
+color:white;
 }
 
-/* Content */
-.content { text-align: left; }
-
-h1 {
-    font-family: 'Sacramento', cursive;
-    font-size: 60px;
-    color: white;
+.name{
+color:#ffe066;
+font-size:25px;
 }
 
-.name {
-    font-size: 28px;
-    color: #ffe066;
+#msg{
+color:white;
+margin-top:10px;
+min-height:80px;
 }
 
-/* ✅ WHITE MESSAGE */
-#msg {
-    color: white;
-    font-size: 18px;
-    margin-top: 15px;
+button{
+padding:10px 20px;
+margin-top:10px;
+background:#ff4d6d;
+color:white;
+border:none;
+border-radius:20px;
+cursor:pointer;
 }
 
-/* Button */
-button {
-    padding: 10px 20px;
-    margin-top: 15px;
-    background: linear-gradient(45deg,#ff2e63,#ff6a88);
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
+/* balloons */
+.balloon{
+position:absolute;
+bottom:-120px;
+width:40px;
+height:60px;
+border-radius:50%;
+animation:float 6s linear infinite;
+}
+.balloon::before{
+content:"";
+position:absolute;
+width:2px;
+height:40px;
+background:currentColor;
+bottom:-40px;
+left:50%;
+animation:wave 1.5s infinite alternate;
+}
+@keyframes wave{
+from{transform:rotate(5deg);}
+to{transform:rotate(15deg);}
+}
+@keyframes float{
+100%{transform:translateY(-120vh);}
 }
 
-/* 🎈 Balloons */
-.balloon {
-    position: absolute;
-    bottom: -120px;
-    width: 50px;
-    height: 70px;
-    border-radius: 50%;
-    animation: floatUp linear infinite;
+/* gift */
+.gift{
+position:fixed;
+bottom:100px;
+cursor:pointer;
 }
+.gift1{left:20px;}
+.gift2{right:20px;}
 
-/* 🎀 Wavy ribbon */
-.balloon::before {
-    content: "";
-    position: absolute;
-    width: 2px;
-    height: 50px;
-    background: currentColor;
-    bottom: -50px;
-    left: 50%;
-    animation: wave 1.5s infinite alternate;
+.box{width:60px;height:60px;position:relative;}
+.base{width:60px;height:40px;background:#7b6aff;position:absolute;bottom:0;}
+.lid{width:60px;height:20px;background:#4d2eff;position:absolute;top:0;transition:.5s;transform-origin:left bottom;}
+.gift.open .lid{transform:rotate(-120deg);}
+
+/* hearts */
+.heart{
+position:fixed;
+color:red;
+animation:rise 3s linear forwards;
 }
-
-/* Ribbon animation */
-@keyframes wave {
-    from { transform: rotate(5deg); }
-    to { transform: rotate(15deg); }
-}
-
-/* Float animation */
-@keyframes floatUp {
-    100% { transform: translateY(-120vh); }
-}
-
-/* 🎊 Confetti */
-.confetti {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    animation: fall linear infinite;
-}
-@keyframes fall {
-    100% { transform: translateY(100vh); }
-}
-
-/* ❤️ Hearts */
-.heart {
-    position: fixed;
-    color: #4dff7c;
-    animation: rise 4s linear forwards;
-}
-@keyframes rise {
-    100% { transform: translateY(-1000px); opacity: 0; }
-}
-
-/* 🎁 Gifts */
-.gift {
-    position: fixed;
-    bottom: 120px;
-    cursor: pointer;
-}
-.gift1 { left: 20px; }
-.gift2 { right: 20px; }
-
-.box { width: 60px; height: 60px; position: relative; }
-
-.base {
-    width: 60px;
-    height: 40px;
-    background: #7b6aff;
-    position: absolute;
-    bottom: 0;
-}
-
-.lid {
-    width: 60px;
-    height: 20px;
-    background: #4d2eff;
-    position: absolute;
-    top: 0;
-    transform-origin: left bottom;
-    transition: transform 0.5s;
-}
-
-.gift.open .lid { transform: rotate(-120deg); }
-
-/* 📱 Mobile */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-    }
-
-    .photo {
-        width: 180px;
-        height: 260px;
-    }
-
-    h1 { font-size: 40px; }
-    .name { font-size: 22px; }
+@keyframes rise{
+100%{transform:translateY(-800px);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- 🎵 Birthday Song -->
+<audio id="bgMusic" loop>
+<source src="https://cdn.pixabay.com/audio/2023/03/27/audio_5d5b4e6f0f.mp3" type="audio/mpeg">
+</audio>
+
 <div class="container">
 
-    <!-- ✅ ONLINE IMAGE -->
-    <img src="https://i.ibb.co/JRpq019H/pic.png" class="photo">
+<img src="https://i.ibb.co/JRpq019H/pic.png" class="photo">
 
-    <div class="content">
-        <h1>Happy Birthday 🎂</h1>
-        <div class="name">Dear HariPriya 💖<br></br? Wish You A Very Happiest Birthday Sis</div>
+<div>
+<h1>Happy Birthday 🎂</h1>
+<div class="name">Dear HariPriya 💖</div>
 
-        <button onclick="showWish()">Click Surprise 🎁</button>
-        <p id="msg"></p>
-    </div>
+<button onclick="startExperience()">Click Surprise 🎁</button>
+<p id="msg"></p>
+</div>
 
 </div>
 
-<!-- 🎁 Gifts -->
-<div class="gift gift1" onclick="openGiftBox(this)">
-    <div class="box"><div class="lid"></div><div class="base"></div></div>
+<!-- gifts -->
+<div class="gift gift1" onclick="openGift(this)">
+<div class="box"><div class="lid"></div><div class="base"></div></div>
 </div>
 
-<div class="gift gift2" onclick="openGiftBox(this)">
-    <div class="box"><div class="lid"></div><div class="base"></div></div>
+<div class="gift gift2" onclick="openGift(this)">
+<div class="box"><div class="lid"></div><div class="base"></div></div>
 </div>
 
 <script>
-// 🎈 Balloons
-const colors=["#ff4d6d","#ffafcc","#cdb4db","#a0c4ff","#caffbf"];
-for(let i=0;i<20;i++){
+// start
+function startExperience(){
+document.getElementById("bgMusic").play();
+typeWish();
+}
+
+// typing
+let t;
+function typeWish(){
+let text=`Happy Birthday to my lovely sister 💕  
+You are my best friend forever  
+
+Wishing you happiness and success 🎉  
+Stay happy always 😊 ❤️`;
+
+let msg=document.getElementById("msg");
+msg.innerHTML="";
+clearInterval(t);
+
+let i=0;
+t=setInterval(()=>{
+msg.innerHTML+=text[i];
+i++;
+if(i>=text.length)clearInterval(t);
+},40);
+}
+
+// balloons
+let colors=["#ff4d6d","#a0c4ff","#caffbf","#ffc6ff"];
+for(let i=0;i<15;i++){
 let b=document.createElement("div");
 b.className="balloon";
 b.style.left=Math.random()*100+"%";
-let c=colors[Math.floor(Math.random()*colors.length)];
-b.style.background=c;
-b.style.color=c;
-b.style.animationDuration=(5+Math.random()*5)+"s";
+b.style.background=colors[Math.floor(Math.random()*colors.length)];
 document.body.appendChild(b);
 }
 
-// 🎊 Confetti
-const confColors=["#ffd166","#06d6a0","#118ab2","#cdb4db","#bde0fe"];
-for(let i=0;i<50;i++){
-let c=document.createElement("div");
-c.className="confetti";
-c.style.left=Math.random()*100+"%";
-c.style.background=confColors[Math.floor(Math.random()*confColors.length)];
-c.style.animationDuration=(3+Math.random()*3)+"s";
-document.body.appendChild(c);
-}
-
-// 💌 Message
-function showWish(){
-document.getElementById("msg").innerHTML=`
-Happy Birthday to my lovely sister! 💕 You are my best friend forever.<br><br>
-Wishing you lots of happiness, love, and success in life 🎉<br><br>
-Happy Birthday akka! Stay happy always 😊 ❤️
-`;
-}
-
-// 🎁 Hearts
-function openGiftBox(el){
+// gift
+function openGift(el){
 el.classList.add("open");
-const rect=el.getBoundingClientRect();
-for(let i=0;i<20;i++){
-setTimeout(()=>{
+let r=el.getBoundingClientRect();
+
+for(let i=0;i<15;i++){
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="❤";
-h.style.left=(rect.left+rect.width/2)+"px";
-h.style.top=(rect.top)+"px";
+h.style.left=(r.left+30)+"px";
+h.style.top=r.top+"px";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),3000);
-},i*80);
 }
+
 setTimeout(()=>el.classList.remove("open"),800);
 }
 </script>
