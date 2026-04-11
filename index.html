@@ -13,37 +13,48 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
     font-family: 'Montserrat', sans-serif;
 
-    /* 🎂 REAL BIRTHDAY BACKGROUND IMAGE */
-    background: url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d') no-repeat center center/cover;
-
+    /* 🎂 NEW CAKE BACKGROUND */
+    background: url('https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
     overflow: hidden;
 }
 
-/* Dark overlay for readability */
+/* Overlay */
 body::before {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.4);
-    top: 0;
-    left: 0;
-    z-index: 0;
+    background: rgba(0,0,0,0.5);
 }
 
+/* Layout */
 .container {
     position: relative;
     z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 60px;
 }
+
+/* IMAGE */
+.photo {
+    width: 200px;
+    height: 360px;
+    border-radius: 14px;
+    border: 5px solid white;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(255,255,255,0.6);
+}
+
+/* Content */
+.content { text-align: left; }
 
 h1 {
     font-family: 'Sacramento', cursive;
-    font-size: 70px;
+    font-size: 60px;
     color: white;
-    text-shadow: 0 0 20px #fff;
 }
 
 .name {
@@ -51,113 +62,118 @@ h1 {
     color: #ffe066;
 }
 
-p {
+/* Message */
+#msg {
+    color: #fff3b0;
     font-size: 18px;
-    color: #ffffff;
+    margin-top: 15px;
 }
 
+/* Button */
 button {
-    padding: 12px 25px;
-    margin-top: 20px;
+    padding: 10px 20px;
+    margin-top: 15px;
     background: linear-gradient(45deg,#ff2e63,#ff6a88);
     color: white;
     border: none;
-    border-radius: 25px;
+    border-radius: 20px;
     cursor: pointer;
 }
 
-/* Balloons */
+/* 🎈 Balloons */
 .balloon {
     position: absolute;
-    bottom: -150px;
-    width: 60px;
-    height: 80px;
-    border-radius: 50% 50% 45% 45%;
-    animation: float linear infinite;
-    box-shadow: inset -5px -10px 15px rgba(0,0,0,0.2),
-                inset 5px 5px 15px rgba(255,255,255,0.3);
-}
-
-.balloon::after {
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    width: 20px;
-    height: 30px;
-    background: rgba(255,255,255,0.4);
+    bottom: -120px;
+    width: 50px;
+    height: 70px;
     border-radius: 50%;
+    animation: floatUp linear infinite;
 }
-
 .balloon::before {
     content: "";
     position: absolute;
     width: 2px;
     height: 50px;
     background: currentColor;
-    bottom: -55px;
-    left: 29px;
-    animation: ribbonWave 2s infinite alternate;
+    bottom: -50px;
+    left: 50%;
 }
-
-@keyframes ribbonWave {
-    from { transform: rotate(5deg); }
-    to { transform: rotate(15deg); }
-}
-
-@keyframes float {
+@keyframes floatUp {
     100% { transform: translateY(-120vh); }
 }
 
-/* Gift */
+/* 🎊 Confetti */
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    animation: fall linear infinite;
+}
+@keyframes fall {
+    100% { transform: translateY(100vh); }
+}
+
+/* ❤️ Hearts */
+.heart {
+    position: fixed;
+    color: #4dff7c;
+    animation: rise 4s linear forwards;
+}
+@keyframes rise {
+    100% { transform: translateY(-1000px); opacity: 0; }
+}
+
+/* 🎁 Gifts */
 .gift {
     position: fixed;
     bottom: 120px;
     cursor: pointer;
-    animation: bounce 2s infinite;
 }
-
 .gift1 { left: 20px; }
 .gift2 { right: 20px; }
 
 .box { width: 60px; height: 60px; position: relative; }
-
 .base {
     width: 60px;
     height: 40px;
-    background: #ff6a88;
+    background: #7b6aff;
     position: absolute;
     bottom: 0;
-    border-radius: 5px;
 }
-
 .lid {
     width: 60px;
     height: 20px;
-    background: #ff2e63;
+    background: #4d2eff;
     position: absolute;
     top: 0;
-    border-radius: 5px;
     transform-origin: left bottom;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s;
+}
+.gift.open .lid { transform: rotate(-120deg); }
+
+/* 🎉 Birthday Caps */
+.cap {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 40px solid;
+    animation: floatUp linear infinite;
 }
 
-.gift.open .lid {
-    transform: rotate(-120deg);
-}
-
-/* Hearts */
-.heart {
+/* 🎊 Party Poppers */
+.popper {
     position: fixed;
-    color: rgb(179, 255, 0);
-    animation: rise 9s linear forwards;
+    width: 4px;
+    height: 20px;
+    background: gold;
+    animation: pop 2s infinite;
 }
 
-@keyframes rise {
-    100% {
-        transform: translateY(-1000px);
-        opacity: 0;
-    }
+@keyframes pop {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-300px); opacity: 0; }
 }
 </style>
 </head>
@@ -165,73 +181,98 @@ button {
 <body>
 
 <div class="container">
-    <h1>Happy Birthday</h1>
-    <div class="name">Dear HariPriya <br> Wish You a Very Happiest Birthday Hari</div>
 
-    <button onclick="showWish()">Click Surprise for You ❤</button>
-    <p id="msg"></p>
+    <img src="hari.jpg" class="photo">
+
+    <div class="content">
+        <h1>Happy Birthday 🎂</h1>
+        <div class="name">Dear HariPriya 💖</div>
+
+        <button onclick="showWish()">Click Surprise 🎁</button>
+        <p id="msg"></p>
+    </div>
+
 </div>
-
-<!-- 🎈 Balloons -->
-<script>
-const colors = ["#ffd6e0","#caffbf","#a0c4ff","#ffc6ff","#fdffb6","#ffadad","#cdb4db","#bde0fe"];
-
-for(let i=0;i<30;i++){
-    let b = document.createElement("div");
-    b.className="balloon";
-    b.style.left = Math.random()*100 + "%";
-    let c = colors[Math.floor(Math.random()*colors.length)];
-    b.style.background = c;
-    b.style.color = c;
-    b.style.animationDuration = (5+Math.random()*5)+"s";
-    document.body.appendChild(b);
-}
-</script>
 
 <!-- Gifts -->
 <div class="gift gift1" onclick="openGiftBox(this)">
     <div class="box"><div class="lid"></div><div class="base"></div></div>
 </div>
-
 <div class="gift gift2" onclick="openGiftBox(this)">
     <div class="box"><div class="lid"></div><div class="base"></div></div>
 </div>
 
 <script>
-function showWish() {
-    document.getElementById("msg").innerHTML = `
-    You are not just my sister, you are my strength and my happiness.<br><br>
-    Life is so beautiful because I have you as my sister.<br><br>
-    No matter where life takes us, you will always be close to my heart.`;
+// 🎈 Balloons
+const colors=["#ff4d6d","#ffafcc","#cdb4db","#a0c4ff","#caffbf"];
+for(let i=0;i<20;i++){
+let b=document.createElement("div");
+b.className="balloon";
+b.style.left=Math.random()*100+"%";
+let c=colors[Math.floor(Math.random()*colors.length)];
+b.style.background=c;
+b.style.color=c;
+b.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(b);
 }
 
-function openGiftBox(el) {
-    el.classList.add("open");
+// 🎉 Caps
+for(let i=0;i<10;i++){
+let cap=document.createElement("div");
+cap.className="cap";
+cap.style.left=Math.random()*100+"%";
+cap.style.borderBottomColor=colors[Math.floor(Math.random()*colors.length)];
+cap.style.animationDuration=(6+Math.random()*4)+"s";
+document.body.appendChild(cap);
+}
 
-    const rect = el.getBoundingClientRect();
+// 🎊 Poppers
+for(let i=0;i<30;i++){
+let p=document.createElement("div");
+p.className="popper";
+p.style.left=Math.random()*100+"%";
+p.style.animationDuration=(1+Math.random()*2)+"s";
+document.body.appendChild(p);
+}
 
-    for (let i = 0; i < 20; i++) {
-        setTimeout(() => {
-            let heart = document.createElement("div");
-            heart.className = "heart";
-            heart.innerHTML = "❤";
+// 🎊 Confetti
+const confColors=["#ffd166","#06d6a0","#118ab2","#cdb4db","#bde0fe"];
+for(let i=0;i<50;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"%";
+c.style.background=confColors[Math.floor(Math.random()*confColors.length)];
+c.style.animationDuration=(3+Math.random()*3)+"s";
+document.body.appendChild(c);
+}
 
-            heart.style.left = (rect.left + rect.width/2) + "px";
-            heart.style.top = (rect.top + 20) + "px";
+// Message
+function showWish(){
+document.getElementById("msg").innerHTML=`
+Happy Birthday to my lovely sister! 💕 You are my best friend forever.<br><br>
+Wishing you lots of happiness, love, and success in life 🎉<br><br>
+Happy Birthday akka! Stay happy always 😊 ❤️
+`;
+}
 
-            let x = Math.random()*100 - 50;
-            heart.style.transform = `translateX(${x}px)`;
-            heart.style.fontSize = (18 + Math.random()*20) + "px";
-
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 3000);
-
-        }, i * 80);
-    }
-
-    setTimeout(() => el.classList.remove("open"), 800);
+// Gift hearts
+function openGiftBox(el){
+el.classList.add("open");
+const rect=el.getBoundingClientRect();
+for(let i=0;i<20;i++){
+setTimeout(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤";
+h.style.left=(rect.left+rect.width/2)+"px";
+h.style.top=(rect.top)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),3000);
+},i*80);
+}
+setTimeout(()=>el.classList.remove("open"),800);
 }
 </script>
 
 </body>
-</html>   
+</html>
