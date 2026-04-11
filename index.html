@@ -33,7 +33,6 @@ height:320px;
 border:5px solid white;
 border-radius:12px;
 object-fit:cover;
-box-shadow:0 0 15px white;
 }
 
 /* text */
@@ -63,6 +62,12 @@ color:white;
 border:none;
 border-radius:20px;
 cursor:pointer;
+}
+
+/* audio */
+audio{
+margin-top:10px;
+width:250px;
 }
 
 /* balloons */
@@ -120,11 +125,6 @@ animation:rise 3s linear forwards;
 
 <body>
 
-<!-- 🎵 MUSIC -->
-<audio id="bgMusic" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946b6f3e6e.mp3" type="audio/mpeg">
-</audio>
-
 <div class="container">
 
 <img src="https://i.ibb.co/JRpq019H/pic.png" class="photo">
@@ -133,7 +133,14 @@ animation:rise 3s linear forwards;
 <h1>Happy Birthday 🎂</h1>
 <div class="name">Dear HariPriya 💖</div>
 
-<button onclick="startExperience()">Click Surprise 🎁</button>
+<!-- 🎵 SONG -->
+<audio id="bgMusic" controls loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b5c0c.mp3" type="audio/mpeg">
+</audio>
+
+<br>
+
+<button onclick="startAll()">Click Surprise 🎁</button>
 <p id="msg"></p>
 </div>
 
@@ -149,21 +156,20 @@ animation:rise 3s linear forwards;
 </div>
 
 <script>
-// 🎵 START (FIXED)
-function startExperience(){
+
+// 🎁 BUTTON → SONG + WISH
+function startAll(){
 let music=document.getElementById("bgMusic");
 
-music.muted=false;
-music.volume=1;
-
+// try auto play
 music.play().catch(()=>{
-alert("Tap again to play music 🎵");
+console.log("If no sound, click ▶ once");
 });
 
 typeWish();
 }
 
-// ✨ typing
+// 💖 typing
 let t;
 function typeWish(){
 let text=`Happy Birthday to my lovely sister 💕  
@@ -184,10 +190,10 @@ if(i>=text.length)clearInterval(t);
 },40);
 }
 
-// 🎈 MORE BALLOONS
+// 🎈 balloons (MORE)
 let colors=["#ff4d6d","#ffafcc","#cdb4db","#a0c4ff","#caffbf","#ffd6a5","#bde0fe"];
 
-for(let i=0;i<35;i++){
+for(let i=0;i<40;i++){
 let b=document.createElement("div");
 b.className="balloon";
 b.style.left=Math.random()*100+"%";
@@ -201,7 +207,7 @@ b.style.animationDuration=(4+Math.random()*4)+"s";
 document.body.appendChild(b);
 }
 
-// 🎁 gift animation
+// 🎁 gift
 function openGift(el){
 el.classList.add("open");
 let r=el.getBoundingClientRect();
