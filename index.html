@@ -124,9 +124,9 @@ animation:rise 3s linear forwards;
 
 <body>
 
-<!-- 🎵 Birthday Song -->
-<audio id="bgMusic" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8a8b6d9b5.mp3?filename=happy-birthday-15200.mp3" type="audio/mpeg">
+<!-- 🎵 WORKING AUDIO (with controls) -->
+<audio id="bgMusic" controls>
+  <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
@@ -137,7 +137,7 @@ animation:rise 3s linear forwards;
 <h1>Happy Birthday 🎂</h1>
 <div class="name">Dear HariPriya 💖</div>
 
-<button onclick="startExperience()">Click Surprise Message For You🎁</button>
+<button onclick="startExperience()">Click Surprise 🎁</button>
 <p id="msg"></p>
 </div>
 
@@ -153,16 +153,14 @@ animation:rise 3s linear forwards;
 </div>
 
 <script>
-// ▶ start (music + typing)
+// ▶ start
 function startExperience(){
 let music = document.getElementById("bgMusic");
 
 music.currentTime = 0;
-music.volume = 1;
 
-// play with safe handling
 music.play().catch(()=>{
-alert("Click again to play music 🎵");
+alert("Click play button if music not starts 🎵");
 });
 
 typeWish();
