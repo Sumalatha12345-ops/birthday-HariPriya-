@@ -126,7 +126,7 @@ animation:rise 3s linear forwards;
 
 <body>
 
-<!-- 🎵 LOCAL SONG (your downloaded file) -->
+<!-- 🎵 YOUR LOCAL SONG -->
 <audio id="bgMusic" controls>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
@@ -155,15 +155,14 @@ animation:rise 3s linear forwards;
 </div>
 
 <script>
-// ▶ start
+// ▶ start (plays your local song)
 function startExperience(){
 let music = document.getElementById("bgMusic");
 
 music.currentTime = 0;
 
-// play safely
 music.play().catch(()=>{
-alert("Click play button manually 🎵");
+alert("Click play button if music not starts 🎵");
 });
 
 typeWish();
