@@ -18,7 +18,6 @@ background:url('https://images.unsplash.com/photo-1603532648955-039310d9ed75?aut
 overflow:hidden;
 }
 
-/* container */
 .container{
 display:flex;
 align-items:center;
@@ -45,12 +44,15 @@ color:#ffe066;
 font-size:25px;
 }
 
+/* ❤️ RED TEXT */
 #msg{
-color:white;
 margin-top:10px;
 min-height:120px;
 white-space:pre-line;
 line-height:1.6;
+font-weight:bold;
+font-size:18px;
+color:#ff4d6d;
 }
 
 button{
@@ -63,7 +65,7 @@ border-radius:20px;
 cursor:pointer;
 }
 
-/* 🎈 BALLOON */
+/* 🎈 balloons */
 .balloon{
 position:absolute;
 bottom:-150px;
@@ -73,7 +75,6 @@ border-radius:50% 50% 45% 45%;
 animation:float 8s linear infinite;
 }
 
-/* 🧵 STRING */
 .balloon::before{
 content:"";
 position:absolute;
@@ -85,24 +86,21 @@ left:50%;
 transform:translateX(-50%);
 }
 
-/* 🎀 RIBBON (CENTER FIXED) */
 .balloon::after{
 content:"🎀";
 position:absolute;
 left:50%;
 top:100%;
-transform:translate(-50%, 5px);
+transform:translate(-50%,5px);
 font-size:18px;
 animation:bowMove 1s infinite alternate;
 }
 
-/* ribbon animation */
 @keyframes bowMove{
-from{transform:translate(-50%, 5px) rotate(-5deg);}
-to{transform:translate(-50%, 5px) rotate(5deg);}
+from{transform:translate(-50%,5px) rotate(-5deg);}
+to{transform:translate(-50%,5px) rotate(5deg);}
 }
 
-/* balloon float */
 @keyframes float{
 0%{transform:translateY(0);}
 100%{transform:translateY(-130vh);}
@@ -113,31 +111,93 @@ to{transform:translate(-50%, 5px) rotate(5deg);}
 position:fixed;
 bottom:100px;
 cursor:pointer;
+animation:floatGift 3s infinite ease-in-out;
 }
+
 .gift1{left:20px;}
 .gift2{right:20px;}
 
-.box{width:60px;height:60px;position:relative;}
-.base{width:60px;height:40px;background:#7b6aff;position:absolute;bottom:0;}
-.lid{width:60px;height:20px;background:#4d2eff;position:absolute;top:0;transition:.5s;transform-origin:left bottom;}
-.gift.open .lid{transform:rotate(-120deg);}
+@keyframes floatGift{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+}
+
+/* 🎁 BIG BOX */
+.box{
+width:100px;
+height:100px;
+position:relative;
+animation:shake 2s infinite;
+}
+
+.base{
+width:100px;
+height:70px;
+background:#7b6aff;
+position:absolute;
+bottom:0;
+border-radius:10px;
+box-shadow:0 0 15px rgba(123,106,255,0.8);
+}
+
+.lid{
+width:100px;
+height:30px;
+background:#4d2eff;
+position:absolute;
+top:0;
+transition:.5s;
+transform-origin:left bottom;
+border-radius:10px;
+box-shadow:0 0 15px rgba(77,46,255,0.8);
+}
+
+.base::before{
+content:"";
+position:absolute;
+width:10px;
+height:100%;
+background:#ff4d6d;
+left:50%;
+transform:translateX(-50%);
+}
+
+.lid::after{
+content:"";
+position:absolute;
+width:100%;
+height:10px;
+background:#ff4d6d;
+top:50%;
+transform:translateY(-50%);
+}
+
+.box:hover{
+box-shadow:0 0 25px #ff4d6d,0 0 50px #ffd700;
+}
+
+@keyframes shake{
+0%{transform:rotate(0);}
+25%{transform:rotate(2deg);}
+50%{transform:rotate(0);}
+75%{transform:rotate(-2deg);}
+100%{transform:rotate(0);}
+}
+
+.gift.open .lid{
+transform:rotate(-120deg);
+animation:none;
+}
 
 /* 💖 hearts */
 .heart{
 position:fixed;
-opacity:0.95;
 animation:rise 4s linear forwards;
 }
 
 @keyframes rise{
-0%{
-transform:translateY(0) scale(1);
-opacity:1;
-}
-100%{
-transform:translateY(-1000px) scale(1.8);
-opacity:0;
-}
+0%{transform:translateY(0) scale(1);opacity:1;}
+100%{transform:translateY(-1000px) scale(1.8);opacity:0;}
 }
 </style>
 </head>
@@ -145,7 +205,6 @@ opacity:0;
 <body>
 
 <div class="container">
-
 <img src="https://i.ibb.co/JRpq019H/pic.png" class="photo">
 
 <div>
@@ -153,9 +212,9 @@ opacity:0;
 <div class="name">Dear HariPriya 💖</div>
 
 <button onclick="startExperience()">Click Surprise 🎁</button>
+
 <p id="msg"></p>
 </div>
-
 </div>
 
 <!-- 🎁 gifts -->
@@ -168,15 +227,15 @@ opacity:0;
 </div>
 
 <script>
-// ▶ typing start
+
+// typing
 function startExperience(){
 typeWish();
 }
 
-// ✍ typing wishes
 let t;
 function typeWish(){
-let text = `Happy Birthday to my lovely sister 💕  
+let text=`Happy Birthday to my lovely sister 💕  
 
 You are my best friend forever 💖  
 You always support me and care for me 🤗  
@@ -211,25 +270,23 @@ b.style.animationDuration=(5 + Math.random()*5) + "s";
 document.body.appendChild(b);
 }
 
-// 🎁 heart blast 💥💖
+// 💥 hearts
 function openGift(el){
 el.classList.add("open");
-let r = el.getBoundingClientRect();
+let r=el.getBoundingClientRect();
 
-let hearts = ["❤","💖","💘","💝","💕","💞","💗"];
+let hearts=["❤","💖","💘","💝","💕","💞","💗"];
 
 for(let i=0;i<100;i++){
-let h = document.createElement("div");
-h.className = "heart";
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
 
-h.innerHTML = hearts[Math.floor(Math.random()*hearts.length)];
+h.style.left=(r.left + Math.random()*200 - 80)+"px";
+h.style.top=(r.top + Math.random()*20)+"px";
 
-h.style.left = (r.left + Math.random()*200 - 80) + "px";
-h.style.top = (r.top + Math.random()*20) + "px";
-
-h.style.fontSize = (18 + Math.random()*30) + "px";
-h.style.animationDuration = (2 + Math.random()*3) + "s";
-h.style.transform = `rotate(${Math.random()*360}deg)`;
+h.style.fontSize=(18 + Math.random()*30)+"px";
+h.style.animationDuration=(2 + Math.random()*3)+"s";
 
 document.body.appendChild(h);
 
