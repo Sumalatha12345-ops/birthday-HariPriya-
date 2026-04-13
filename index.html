@@ -18,6 +18,7 @@ background:url('https://images.unsplash.com/photo-1603532648955-039310d9ed75?aut
 overflow:hidden;
 }
 
+/* container */
 .container{
 display:flex;
 align-items:center;
@@ -52,6 +53,7 @@ white-space:pre-line;
 line-height:1.6;
 }
 
+/* button */
 button{
 padding:10px 20px;
 margin-top:10px;
@@ -124,9 +126,9 @@ animation:rise 3s linear forwards;
 
 <body>
 
-<!-- 🎵 WORKING AUDIO (with controls) -->
+<!-- 🎵 LOCAL SONG (your downloaded file) -->
 <audio id="bgMusic" controls>
-  <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+  <source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
@@ -159,8 +161,9 @@ let music = document.getElementById("bgMusic");
 
 music.currentTime = 0;
 
+// play safely
 music.play().catch(()=>{
-alert("Click play button if music not starts 🎵");
+alert("Click play button manually 🎵");
 });
 
 typeWish();
