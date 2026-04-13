@@ -18,7 +18,6 @@ background:url('https://images.unsplash.com/photo-1603532648955-039310d9ed75?aut
 overflow:hidden;
 }
 
-/* container */
 .container{
 display:flex;
 align-items:center;
@@ -53,7 +52,6 @@ white-space:pre-line;
 line-height:1.6;
 }
 
-/* button */
 button{
 padding:10px 20px;
 margin-top:10px;
@@ -112,14 +110,23 @@ cursor:pointer;
 .lid{width:60px;height:20px;background:#4d2eff;position:absolute;top:0;transition:.5s;transform-origin:left bottom;}
 .gift.open .lid{transform:rotate(-120deg);}
 
-/* ❤️ hearts */
+/* ❤️ improved hearts */
 .heart{
 position:fixed;
 color:red;
+opacity:0.9;
 animation:rise 3s linear forwards;
 }
+
 @keyframes rise{
-100%{transform:translateY(-800px);opacity:0;}
+0%{
+transform:translateY(0) scale(1);
+opacity:1;
+}
+100%{
+transform:translateY(-900px) scale(1.5);
+opacity:0;
+}
 }
 </style>
 </head>
@@ -150,7 +157,7 @@ animation:rise 3s linear forwards;
 </div>
 
 <script>
-// ▶ start (only typing)
+// ▶ start typing
 function startExperience(){
 typeWish();
 }
@@ -193,19 +200,32 @@ b.style.animationDuration=(5 + Math.random()*5) + "s";
 document.body.appendChild(b);
 }
 
-// 🎁 gift
+// 🎁 gift with MORE HEARTS 💥
 function openGift(el){
 el.classList.add("open");
-let r=el.getBoundingClientRect();
+let r = el.getBoundingClientRect();
 
-for(let i=0;i<15;i++){
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="❤";
-h.style.left=(r.left+30)+"px";
-h.style.top=r.top+"px";
+// 💥 50 hearts
+for(let i=0;i<50;i++){
+
+let h = document.createElement("div");
+h.className = "heart";
+h.innerHTML = "❤";
+
+// random spread
+h.style.left = (r.left + Math.random()*100 - 30) + "px";
+h.style.top = r.top + "px";
+
+// random size
+h.style.fontSize = (16 + Math.random()*20) + "px";
+
+// random speed
+h.style.animationDuration = (2 + Math.random()*2) + "s";
+
 document.body.appendChild(h);
-setTimeout(()=>h.remove(),3000);
+
+// remove
+setTimeout(()=>h.remove(),4000);
 }
 
 setTimeout(()=>el.classList.remove("open"),800);
