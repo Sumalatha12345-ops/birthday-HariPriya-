@@ -126,8 +126,8 @@ animation:rise 3s linear forwards;
 
 <body>
 
-<!-- 🎵 YOUR LOCAL SONG -->
-<audio id="bgMusic" controls>
+<!-- 🎵 LOCAL SONG -->
+<audio id="bgMusic" preload="auto">
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
@@ -155,15 +155,23 @@ animation:rise 3s linear forwards;
 </div>
 
 <script>
-// ▶ start (plays your local song)
+// ▶ start (audio + typing)
 function startExperience(){
 let music = document.getElementById("bgMusic");
 
+// reset and play
+music.pause();
 music.currentTime = 0;
 
-music.play().catch(()=>{
-alert("Click play button if music not starts 🎵");
-});
+let playPromise = music.play();
+
+if (playPromise !== undefined) {
+  playPromise.then(() => {
+    console.log("Audio playing...");
+  }).catch(() => {
+    alert("👉 Click again or press screen to allow sound 🎵");
+  });
+}
 
 typeWish();
 }
