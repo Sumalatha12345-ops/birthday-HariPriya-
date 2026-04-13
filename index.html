@@ -18,6 +18,7 @@ background:url('https://images.unsplash.com/photo-1603532648955-039310d9ed75?aut
 overflow:hidden;
 }
 
+/* container */
 .container{
 display:flex;
 align-items:center;
@@ -62,7 +63,7 @@ border-radius:20px;
 cursor:pointer;
 }
 
-/* 🎈 balloons */
+/* 🎈 BALLOON */
 .balloon{
 position:absolute;
 bottom:-150px;
@@ -72,25 +73,36 @@ border-radius:50% 50% 45% 45%;
 animation:float 8s linear infinite;
 }
 
+/* 🧵 STRING */
 .balloon::before{
 content:"";
 position:absolute;
 width:2px;
 height:50px;
 background:#fff;
-bottom:-50px;
+top:100%;
 left:50%;
 transform:translateX(-50%);
 }
 
+/* 🎀 RIBBON (CENTER FIXED) */
 .balloon::after{
 content:"🎀";
 position:absolute;
-bottom:-70px;
 left:50%;
-transform:translateX(-50%);
+top:100%;
+transform:translate(-50%, 5px);
+font-size:18px;
+animation:bowMove 1s infinite alternate;
 }
 
+/* ribbon animation */
+@keyframes bowMove{
+from{transform:translate(-50%, 5px) rotate(-5deg);}
+to{transform:translate(-50%, 5px) rotate(5deg);}
+}
+
+/* balloon float */
 @keyframes float{
 0%{transform:translateY(0);}
 100%{transform:translateY(-130vh);}
@@ -110,12 +122,11 @@ cursor:pointer;
 .lid{width:60px;height:20px;background:#4d2eff;position:absolute;top:0;transition:.5s;transform-origin:left bottom;}
 .gift.open .lid{transform:rotate(-120deg);}
 
-/* ❤️ improved hearts */
+/* 💖 hearts */
 .heart{
 position:fixed;
-color:red;
-opacity:0.9;
-animation:rise 3s linear forwards;
+opacity:0.95;
+animation:rise 4s linear forwards;
 }
 
 @keyframes rise{
@@ -124,7 +135,7 @@ transform:translateY(0) scale(1);
 opacity:1;
 }
 100%{
-transform:translateY(-900px) scale(1.5);
+transform:translateY(-1000px) scale(1.8);
 opacity:0;
 }
 }
@@ -157,7 +168,7 @@ opacity:0;
 </div>
 
 <script>
-// ▶ start typing
+// ▶ typing start
 function startExperience(){
 typeWish();
 }
@@ -200,32 +211,29 @@ b.style.animationDuration=(5 + Math.random()*5) + "s";
 document.body.appendChild(b);
 }
 
-// 🎁 gift with MORE HEARTS 💥
+// 🎁 heart blast 💥💖
 function openGift(el){
 el.classList.add("open");
 let r = el.getBoundingClientRect();
 
-// 💥 50 hearts
-for(let i=0;i<50;i++){
+let hearts = ["❤","💖","💘","💝","💕","💞","💗"];
 
+for(let i=0;i<100;i++){
 let h = document.createElement("div");
 h.className = "heart";
-h.innerHTML = "❤";
 
-// random spread
-h.style.left = (r.left + Math.random()*100 - 30) + "px";
-h.style.top = r.top + "px";
+h.innerHTML = hearts[Math.floor(Math.random()*hearts.length)];
 
-// random size
-h.style.fontSize = (16 + Math.random()*20) + "px";
+h.style.left = (r.left + Math.random()*200 - 80) + "px";
+h.style.top = (r.top + Math.random()*20) + "px";
 
-// random speed
-h.style.animationDuration = (2 + Math.random()*2) + "s";
+h.style.fontSize = (18 + Math.random()*30) + "px";
+h.style.animationDuration = (2 + Math.random()*3) + "s";
+h.style.transform = `rotate(${Math.random()*360}deg)`;
 
 document.body.appendChild(h);
 
-// remove
-setTimeout(()=>h.remove(),4000);
+setTimeout(()=>h.remove(),5000);
 }
 
 setTimeout(()=>el.classList.remove("open"),800);
