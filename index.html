@@ -47,8 +47,9 @@ font-size:25px;
 #msg{
 color:white;
 margin-top:10px;
-min-height:80px;
+min-height:120px;
 white-space:pre-line;
+line-height:1.6;
 }
 
 button{
@@ -88,7 +89,6 @@ position:absolute;
 bottom:-70px;
 left:50%;
 transform:translateX(-50%);
-font-size:16px;
 }
 
 @keyframes float{
@@ -124,9 +124,9 @@ animation:rise 3s linear forwards;
 
 <body>
 
-<!-- 🎵 WORKING SONG -->
+<!-- 🎵 Birthday Song -->
 <audio id="bgMusic" loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8a8b6d9b5.mp3?filename=happy-birthday-15200.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
@@ -137,7 +137,7 @@ animation:rise 3s linear forwards;
 <h1>Happy Birthday 🎂</h1>
 <div class="name">Dear HariPriya 💖</div>
 
-<button onclick="startExperience()">Click Surprise 🎁</button>
+<button onclick="startExperience()">Click Surprise Message For You🎁</button>
 <p id="msg"></p>
 </div>
 
@@ -153,25 +153,34 @@ animation:rise 3s linear forwards;
 </div>
 
 <script>
-// ▶ start
+// ▶ start (music + typing)
 function startExperience(){
 let music = document.getElementById("bgMusic");
 
 music.currentTime = 0;
 music.volume = 1;
 
-music.play();
+// play with safe handling
+music.play().catch(()=>{
+alert("Click again to play music 🎵");
+});
 
 typeWish();
 }
 
-// ✍ typing text
+// ✍ typing wishes
 let t;
 function typeWish(){
 let text = `Happy Birthday to my lovely sister 💕  
-You are my best friend forever 💖  Wishing you lots of happiness and success 🎉  
 
-Happy Birthday akka! Stay happy always 😊 ❤️`;
+You are my best friend forever 💖  
+You always support me and care for me 🤗  
+
+Wishing you lots of happiness, love, and success 🎉  
+May all your dreams come true ✨  
+
+Stay happy always 😊❤️  
+Love you akka 💐💖`;
 
 let msg=document.getElementById("msg");
 msg.innerHTML="";
@@ -191,11 +200,9 @@ let colors=["#ff4d6d","#a0c4ff","#caffbf","#ffc6ff","#ffd6a5","#bdb2ff"];
 for(let i=0;i<30;i++){
 let b=document.createElement("div");
 b.className="balloon";
-
 b.style.left=Math.random()*100+"%";
 b.style.background=colors[Math.floor(Math.random()*colors.length)];
 b.style.animationDuration=(5 + Math.random()*5) + "s";
-
 document.body.appendChild(b);
 }
 
