@@ -2,54 +2,219 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Birthday Wishes</title>
+<title>Happy Birthday Hari</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to right, #ffdde1, #ee9ca7);
-    font-family: Arial;
-    flex-direction: column;
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Montserrat',sans-serif;
+background:url('https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&w=1600&q=80') no-repeat center/cover;
+overflow:hidden;
 }
 
-h1 {
-    color: white;
-    font-size: 40px;
+.container{
+display:flex;
+align-items:center;
+gap:40px;
+z-index:2;
 }
 
-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    background: #ff4d6d;
-    color: white;
+.photo{
+width:180px;
+height:300px;
+border:5px solid white;
+border-radius:10px;
+object-fit:cover;
 }
-button:hover {
-    background: #ff1e4d;
+
+h1{
+font-family:'Sacramento',cursive;
+font-size:50px;
+color:white;
+}
+
+.name{
+color:#ffe066;
+font-size:25px;
+}
+
+#msg{
+color:white;
+margin-top:10px;
+min-height:80px;
+white-space:pre-line;
+}
+
+button{
+padding:10px 20px;
+margin-top:10px;
+background:#ff4d6d;
+color:white;
+border:none;
+border-radius:20px;
+cursor:pointer;
+}
+
+/* 🎈 balloons */
+.balloon{
+position:absolute;
+bottom:-150px;
+width:50px;
+height:70px;
+border-radius:50% 50% 45% 45%;
+animation:float 8s linear infinite;
+}
+
+.balloon::before{
+content:"";
+position:absolute;
+width:2px;
+height:50px;
+background:#fff;
+bottom:-50px;
+left:50%;
+transform:translateX(-50%);
+}
+
+.balloon::after{
+content:"🎀";
+position:absolute;
+bottom:-70px;
+left:50%;
+transform:translateX(-50%);
+font-size:16px;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-130vh);}
+}
+
+/* 🎁 gift */
+.gift{
+position:fixed;
+bottom:100px;
+cursor:pointer;
+}
+.gift1{left:20px;}
+.gift2{right:20px;}
+
+.box{width:60px;height:60px;position:relative;}
+.base{width:60px;height:40px;background:#7b6aff;position:absolute;bottom:0;}
+.lid{width:60px;height:20px;background:#4d2eff;position:absolute;top:0;transition:.5s;transform-origin:left bottom;}
+.gift.open .lid{transform:rotate(-120deg);}
+
+/* ❤️ hearts */
+.heart{
+position:fixed;
+color:red;
+animation:rise 3s linear forwards;
+}
+@keyframes rise{
+100%{transform:translateY(-800px);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<h1>🎉 Happy Birthday 🎉</h1>
-
-<button onclick="playMusic()">▶ Play Birthday Song</button>
-
-<audio id="song">
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+<!-- 🎵 WORKING SONG -->
+<audio id="bgMusic" loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 
+<div class="container">
+
+<img src="https://i.ibb.co/JRpq019H/pic.png" class="photo">
+
+<div>
+<h1>Happy Birthday 🎂</h1>
+<div class="name">Dear HariPriya 💖</div>
+
+<button onclick="startExperience()">Click Surprise 🎁</button>
+<p id="msg"></p>
+</div>
+
+</div>
+
+<!-- 🎁 gifts -->
+<div class="gift gift1" onclick="openGift(this)">
+<div class="box"><div class="lid"></div><div class="base"></div></div>
+</div>
+
+<div class="gift gift2" onclick="openGift(this)">
+<div class="box"><div class="lid"></div><div class="base"></div></div>
+</div>
+
 <script>
-function playMusic() {
-    let audio = document.getElementById("song");
-    audio.play();
+// ▶ start
+function startExperience(){
+let music = document.getElementById("bgMusic");
+
+music.currentTime = 0;
+music.volume = 1;
+
+music.play();
+
+typeWish();
+}
+
+// ✍ typing text
+let t;
+function typeWish(){
+let text = `Happy Birthday to my lovely sister 💕  
+You are my best friend forever 💖  Wishing you lots of happiness and success 🎉  
+
+Happy Birthday akka! Stay happy always 😊 ❤️`;
+
+let msg=document.getElementById("msg");
+msg.innerHTML="";
+clearInterval(t);
+
+let i=0;
+t=setInterval(()=>{
+msg.innerHTML+=text[i];
+i++;
+if(i>=text.length)clearInterval(t);
+},40);
+}
+
+// 🎈 balloons
+let colors=["#ff4d6d","#a0c4ff","#caffbf","#ffc6ff","#ffd6a5","#bdb2ff"];
+
+for(let i=0;i<30;i++){
+let b=document.createElement("div");
+b.className="balloon";
+
+b.style.left=Math.random()*100+"%";
+b.style.background=colors[Math.floor(Math.random()*colors.length)];
+b.style.animationDuration=(5 + Math.random()*5) + "s";
+
+document.body.appendChild(b);
+}
+
+// 🎁 gift
+function openGift(el){
+el.classList.add("open");
+let r=el.getBoundingClientRect();
+
+for(let i=0;i<15;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤";
+h.style.left=(r.left+30)+"px";
+h.style.top=r.top+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),3000);
+}
+
+setTimeout(()=>el.classList.remove("open"),800);
 }
 </script>
 
